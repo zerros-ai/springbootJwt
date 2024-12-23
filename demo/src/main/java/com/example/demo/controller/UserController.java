@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.UserEntity;
+import com.example.demo.entity.User;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,21 +14,21 @@ public class UserController {
     private UserService userService;
 
     @GetMapping
-    public List<UserEntity> getAllUsers() {
+    public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
 
     @GetMapping("/{id}")
-    public UserEntity getUserById(@PathVariable String id) {
+    public User getUserById(@PathVariable String id) {
         return userService.getUserById(id);
     }
 
     @PostMapping
-    public UserEntity createUser(@RequestBody UserEntity user) {
+    public User createUser(@RequestBody User user) {
         return userService.createUser(user);
     }
     @PutMapping("/{id}")
-    public UserEntity updateUser(@PathVariable String id, @RequestBody UserEntity user) {
+    public User updateUser(@PathVariable String id, @RequestBody User user) {
         return userService.updateUser(id, user);
     }
     @DeleteMapping("/{id}")

@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.entity.UserEntity;
+import com.example.demo.entity.User;
 import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,17 +12,17 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public List<UserEntity> getAllUsers() {
+    public List<User> getAllUsers() {
         return userRepository.findAll();
     }
-    public UserEntity getUserById(String id) {
+    public User getUserById(String id) {
         return userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
     }
-    public UserEntity createUser(UserEntity user) {
+    public User createUser(User user) {
         return userRepository.save(user);
     }
-    public UserEntity updateUser(String id, UserEntity user) {
-        UserEntity userEntity =getUserById(id);
+    public User updateUser(String id, User user) {
+        User userEntity =getUserById(id);
         userEntity.setName(user.getName());
         userEntity.setPassword(user.getPassword());
         return userRepository.save(userEntity);

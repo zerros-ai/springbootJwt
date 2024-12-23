@@ -17,7 +17,7 @@ public class JwtUtil {
     }
 
     //ID로 JWT 토큰 생성
-    public String generateToken(String id, long expiration){
+    public String generateToken(String id){
         return Jwts.builder()
                 .subject(id)
                 .issuedAt(new Date(System.currentTimeMillis()))
