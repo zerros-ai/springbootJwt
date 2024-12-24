@@ -2,11 +2,12 @@ package com.example.demo.util;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.stereotype.Component;
 
 import java.security.Key;
 import java.util.Date;
 
-
+@Component
 public class JwtUtil {
     private String secretKey = "boss"; //랜덤키
     private long expiration = 1000 * 3600;
