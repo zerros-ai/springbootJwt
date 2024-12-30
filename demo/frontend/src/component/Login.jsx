@@ -23,7 +23,7 @@ function Login() {
                 window.location.href = "/dashboard";
             }else {
                 const errorData = await response.json();
-                setErrorMessage(errorDAta.message||"로그인 실패!");
+                setErrorMessage(errorData.message||"로그인 실패!");
             }
         }catch (error) {
             setErrorMessage("서버와 연결할 수 없습니다.")

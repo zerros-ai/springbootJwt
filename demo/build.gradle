@@ -40,16 +40,20 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
-task buildReact(type: Exec){
-    workingDir 'frontend'
-    commandLine 'C:/Program Files/nodejs/npm.cmd','run','build'
+tasks.register('buildReact', Exec) {
+    workingDir = 'frontend'
+    commandLine 'C:/Program Files/nodejs/npm.cmd', 'run', 'build'
 }
 
-task copyReactBuild(type: Copy){
-    dependsOn buildReact
+tasks.register('copyReactBuild', Copy) {
+    dependsOn 'buildReact'  // 태스크 이름을 문자열로 지정
     from 'frontend/build'
     into 'src/main/resources/static'
 }
+tasks.named('processResources') {
+    dependsOn 'copyReactBuild'
+}
+
 bootJar {
-    dependsOn copyReactBuild
+    dependsOn 'copyReactBuild'  // 태스크 이름을 문자열로 지정
 }
