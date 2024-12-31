@@ -45,6 +45,10 @@ tasks.register('buildReact', Exec) {
     commandLine 'C:/Program Files/nodejs/npm.cmd', 'run', 'build'
 }
 
+tasks.withType(JavaCompile).configureEach {
+    options.compilerArgs << "-Xlint:deprecation"
+}
+
 tasks.register('copyReactBuild', Copy) {
     dependsOn 'buildReact'  // 태스크 이름을 문자열로 지정
     from 'frontend/build'

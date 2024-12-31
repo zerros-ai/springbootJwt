@@ -9,7 +9,7 @@ import java.util.Date;
 
 @Component
 public class JwtUtil {
-    private String secretKey = "boss"; //랜덤키
+    private static final String secretKey = "your-256-bit-secret-key"; //랜덤키
     private long expiration = 1000 * 3600;
 
     //key 객체 생성
@@ -27,7 +27,7 @@ public class JwtUtil {
                 .compact();
     }
 
-    public String getUserIdfromToken(String token){
+    public String getUserIdFromToken(String token){
         return Jwts.parser()
                 .setSigningKey(getSignKey())
                 .build()
