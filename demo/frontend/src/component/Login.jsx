@@ -6,7 +6,7 @@ function Login() {
     const [errorMessage, setErrorMessage] = useState("");
 
     //사용자 등록 팝업 상태
-    const [showRegistPopup, setShowRegistPopup] = useState("");
+    const [showRegisterPopup, setShowRegisterPopup] = useState("");
     const [newUser, setNewUser] = useState("");
     const [registerMessage, setRegisterMessage] = useState("");
 
@@ -48,8 +48,8 @@ function Login() {
             });
             if(response.ok){
                 setRegisterMessage("사용자가 성공적으로 등록되었습니다!");
-                setNewUser({id: "",password:""/** , role: "USER" **/});
-                setShowRegistPopup(false);
+                setNewUser({id: "",name:"",password:""/** , role: "001" **/});
+                setShowRegisterPopup(false);
             }else {
                 const errorData = await response.json();
                 setRegisterMessage(errorData.message || "사용자 등록 실패!");
@@ -66,7 +66,7 @@ function Login() {
                 <div>
                     <input
                         type="text"
-                        placeholder="사용자 이름"
+                        placeholder="사용자 ID"
                         value={id}
                         onChange={(e) => setId(e.target.value)}
                         required
@@ -115,10 +115,26 @@ function Login() {
                         <div>
                             <input
                                 type="text"
-                                placeholder="사용자 이름"
-                                value={newUser.username}
+                                placeholder="사용자 ID"
+                                value={newUser.id}
                                 onChange={(e) =>
-                                    setNewUser({ ...newUser, username: e.target.value })
+                                    setNewUser({...newUser, id: e.target.value})
+                                }
+                                required
+                                style={{
+                                    width: "100%",
+                                    padding: "10px",
+                                    marginBottom: "10px",
+                                }}
+                            />
+                        </div>
+                        <div>
+                            <input
+                                type="text"
+                                placeholder="사용자 이름"
+                                value={newUser.name}
+                                onChange={(e) =>
+                                    setNewUser({...newUser, name: e.target.value})
                                 }
                                 required
                                 style={{
@@ -134,7 +150,7 @@ function Login() {
                                 placeholder="비밀번호"
                                 value={newUser.password}
                                 onChange={(e) =>
-                                    setNewUser({ ...newUser, password: e.target.value })
+                                    setNewUser({...newUser, password: e.target.value})
                                 }
                                 required
                                 style={{
@@ -146,7 +162,7 @@ function Login() {
                         </div>
                         <button
                             type="submit"
-                            style={{ padding: "10px 20px", width: "100%" }}
+                            style={{padding: "10px 20px", width: "100%"}}
                         >
                             등록
                         </button>
@@ -165,7 +181,7 @@ function Login() {
                         </button>
                     </form>
                     {registerMessage && (
-                        <p style={{ color: "red", marginTop: "10px" }}>{registerMessage}</p>
+                        <p style={{color: "red", marginTop: "10px"}}>{registerMessage}</p>
                     )}
                 </div>
             )}
