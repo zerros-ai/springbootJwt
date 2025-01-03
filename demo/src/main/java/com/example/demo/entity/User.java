@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 
 @Entity
-@Table(name = "User")
+@Table(name = "user")
 public class User {
     @Id
 //    @GeneratedValue(strategy = GenerationType.UUID)
@@ -37,6 +37,8 @@ public class User {
     public void setId(String id) {
         this.id = id;
     }
+
     public String getRole() {return role;}
+
     public void setRole(String role) {this.role = role;}
 }

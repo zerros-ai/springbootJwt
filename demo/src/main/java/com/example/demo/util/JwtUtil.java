@@ -9,8 +9,7 @@ import java.util.Date;
 
 @Component
 public class JwtUtil {
-    private static final String secretKey = "your-256-bit-secret-key"; //랜덤키
-    private long expiration = 1000 * 3600;
+    private static final String secretKey = "replace_with_32_byte_secure_key_example_123456"; //랜덤키
 
     //key 객체 생성
     private Key getSignKey(){
@@ -19,10 +18,11 @@ public class JwtUtil {
 
     //ID로 JWT 토큰 생성
     public String generateToken(String id){
+        long expiration = 1000 * 3600;
         return Jwts.builder()
                 .subject(id)
                 .issuedAt(new Date(System.currentTimeMillis()))
-                .expiration(new Date(System.currentTimeMillis()+expiration))
+                .expiration(new Date(System.currentTimeMillis()+ expiration))
                 .signWith(getSignKey())
                 .compact();
     }

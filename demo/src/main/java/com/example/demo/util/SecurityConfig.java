@@ -32,8 +32,10 @@ public class SecurityConfig {
         http
                 .csrf(csrf->csrf.disable())
                 .authorizeHttpRequests(auth->auth
-                        .requestMatchers("/", "/index.html", "/static/**", "/Login", "/dashboard").permitAll() // 정적 리소스 및 React 경로 허용
+                        .requestMatchers("/", "/index.html", "/static/**").permitAll() // 정적 리소스 및 React 경로 허용
                         .requestMatchers("/api/users/add").permitAll()
+                        .requestMatchers("/api/auth/login").permitAll()
+                        .requestMatchers("/dashboard").permitAll()
                         .anyRequest().authenticated()
                 ).addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
