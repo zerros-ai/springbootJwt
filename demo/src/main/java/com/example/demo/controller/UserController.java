@@ -24,10 +24,11 @@ public class UserController {
     //계정 조회
     @GetMapping("/info")
     public ResponseEntity<?> getUserInfo(Authentication authentication) {
-        String Id = authentication.getName();
+        String id = authentication.getName();
+        String name = userService.getUserById(id).getName();
         Map<String, Object> userInfo = new HashMap<>();
-        userInfo.put("id", Id);
-        userInfo.put("name", authentication.getName());
+        userInfo.put("id", id);
+        userInfo.put("name",name);
         userInfo.put("message", "User info retrieved successfully");
         return ResponseEntity.ok(userInfo);
     }

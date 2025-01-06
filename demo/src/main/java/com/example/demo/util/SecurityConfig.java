@@ -36,9 +36,8 @@ public class SecurityConfig {
                         .requestMatchers("/", "/index.html", "/static/**").permitAll() // 정적 리소스 및 React 경로 허용
                         .requestMatchers("/api/users/add").permitAll()
                         .requestMatchers("/api/auth/login").permitAll()
-                        .requestMatchers("/dashboard").permitAll()
+                        .requestMatchers("dashboard").permitAll()
                         .requestMatchers("/api/users/info").authenticated()
-                        .requestMatchers("/error").permitAll()
                         .anyRequest().authenticated()
                 )
                 .anonymous(anonymous->anonymous.disable())

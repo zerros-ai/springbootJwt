@@ -39,7 +39,8 @@ function Dashboard(){
             {userInfo && (
                 <div>
                     <h2>사용자 정보</h2>
-                    <p>이름: {userInfo.username}</p>
+                    <p>ID: {userInfo.id}</p>
+                    <p>이름: {userInfo.name}</p>
                     <p>메시지: {userInfo.message}</p>
                 </div>
             )}

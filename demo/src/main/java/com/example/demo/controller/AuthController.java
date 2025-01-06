@@ -35,7 +35,6 @@ public class AuthController {
         //3.토큰을 바디로 담아 반환 (또는 Authorization 헤더에 같이 담아 전송도 가능)
         return ResponseEntity.ok().body("{\"token\": \"" + token + "\"}");
 
-//        return ResponseEntity.ok("로그인 성공");
     }
 
 
