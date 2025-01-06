@@ -42,9 +42,11 @@ public class JwtUtil {
             Jwts.parser()
                     .setSigningKey(getSignKey())
                     .build()
-                    .parseClaimsJwt(token);
+                    .parseClaimsJws(token);
+            System.out.println("token valid");
             return true;
         }catch (JwtException e){
+            System.out.println("token invalid");
             return false;
         }
     }

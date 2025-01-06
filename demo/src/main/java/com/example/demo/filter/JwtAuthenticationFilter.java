@@ -31,11 +31,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             token = authHeader.substring(7);
         }
-
+        System.out.println("token=> " + token);
         //2.토큰 검증
         if(token != null && jwtUtil.validateToken(token)) {
             String id = jwtUtil.getUserIdFromToken(token);
-
+            System.out.println("id=> " + id);
             //3.security context에 인증 정보 세팅
             UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
                     id,

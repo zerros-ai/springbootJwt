@@ -1,27 +1,27 @@
 import React, { useState } from "react";
 
 //fetchDashboard 함수
-async function fetchDashboard(){
-    try {
-        const token = localStorage.getItem("token");
-        const response = await fetch("http://localhost:8080/dashboard", {
-            method: "GET",
-            headers: {
-                Authorization: "Bearer " + token, // JWT 토큰 추가
-            },
-        });
-        if (response.ok) {
-            const data = await response.json();
-            console.log("Dashboard Data:", data);
-            return data; // 필요하면 대시보드 데이터를 반환
-        } else {
-            throw new Error("접근 권한이 없습니다.");
-        }
-    } catch (error) {
-        console.error("Error fetching dashboard:", error);
-        throw error; // 에러를 다시 던져 호출한 곳에서 처리 가능
-    }
-}
+// async function fetchDashboard(){
+//     try {
+//         const token = localStorage.getItem("token");
+//         const response = await fetch("http://localhost:8080/dashboard", {
+//             method: "GET",
+//             headers: {
+//                 Authorization: "Bearer " + token, // JWT 토큰 추가
+//             },
+//         });
+//         if (response.ok) {
+//             const data = await response.json();
+//             console.log("Dashboard Data:", data);
+//             return data; // 필요하면 대시보드 데이터를 반환
+//         } else {
+//             throw new Error("접근 권한이 없습니다.");
+//         }
+//     } catch (error) {
+//         console.error("Error fetching dashboard:", error);
+//         throw error; // 에러를 다시 던져 호출한 곳에서 처리 가능
+//     }
+// }
 
 //로그인 컴포넌트
 function Login() {
@@ -49,10 +49,6 @@ function Login() {
                 const data = await response.json();
                 localStorage.setItem("token", data.token);
                 alert("로그인 성공");
-                // 대시보드 데이터 가져오기
-                const dashboardData = await fetchDashboard();
-                console.log("Fetched Dashboard Data:", dashboardData);
-
                 // 대시보드로 리디렉션
                 window.location.href = "/dashboard";
             }else {
