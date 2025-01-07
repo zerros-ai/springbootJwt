@@ -19,7 +19,8 @@ public class UserController {
 
     //계정 생성
     @PostMapping("/add")
-    public User createUser(@RequestBody User user) { return userService.createUser(user);}
+    public User createUser(@RequestBody User user) {
+        return userService.createUser(user);}
 
     //계정 조회
     @GetMapping("/info")

@@ -73,7 +73,7 @@ function Login() {
             });
             if(response.ok){
                 setRegisterMessage("사용자가 성공적으로 등록되었습니다!");
-                setNewUser({id: "",name:"",password:""/** , role: "001" **/});
+                setNewUser({id: "",name:"",password:"", role: "" });
                 setShowRegisterPopup(false);
             }else {
                 const errorData = await response.json();

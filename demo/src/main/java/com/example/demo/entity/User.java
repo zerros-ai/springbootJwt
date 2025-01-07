@@ -1,11 +1,13 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 
 @Entity
 @Table(name = "user")
-public class User {
+@EntityListeners(AuditingEntityListener.class)
+public class User extends BaseEntity {
     @Id
 //    @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
