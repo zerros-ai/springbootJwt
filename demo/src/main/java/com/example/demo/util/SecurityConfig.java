@@ -34,10 +34,9 @@ public class SecurityConfig {
                 .csrf(csrf->csrf.disable())
                 .authorizeHttpRequests(auth->auth
                         .requestMatchers("/", "/index.html", "/static/**").permitAll() // 정적 리소스 및 React 경로 허용
-                        .requestMatchers("/api/users/add").permitAll()
-                        .requestMatchers("/api/auth/login").permitAll()
+                        .requestMatchers("/api/users/add","/api/auth/login").permitAll()
                         .requestMatchers("dashboard").permitAll()
-                        .requestMatchers("/api/users/info").authenticated()
+                        .requestMatchers("/api/users/info").hasAuthority("ROLE_USER")
                         .anyRequest().authenticated()
                 )
                 .anonymous(anonymous->anonymous.disable())

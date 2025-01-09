@@ -41,6 +41,7 @@ function Dashboard(){
                     <h2>사용자 정보</h2>
                     <p>ID: {userInfo.id}</p>
                     <p>이름: {userInfo.name}</p>
+                    <p>권한: {userInfo.role}</p>
                     <p>메시지: {userInfo.message}</p>
                 </div>
             )}

@@ -27,9 +27,11 @@ public class UserController {
     public ResponseEntity<?> getUserInfo(Authentication authentication) {
         String id = authentication.getName();
         String name = userService.getUserById(id).getName();
+        String role = userService.getUserById(id).getRole();
         Map<String, Object> userInfo = new HashMap<>();
         userInfo.put("id", id);
         userInfo.put("name",name);
+        userInfo.put("role",role);
         userInfo.put("message", "User info retrieved successfully");
         return ResponseEntity.ok(userInfo);
     }
