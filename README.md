@@ -7,3 +7,8 @@
 
 2025-01-08
 ROLE 테이블 만들기
+
+2025-01-09
+sercurityConfig에서 .hasRole 과 .hasAuthority의 차이점 
+.hasRole은 ROLE_ 접두사를 붙여 DB에서 검색. 
+.hasAuthority는 그대로 DB에서 검색.

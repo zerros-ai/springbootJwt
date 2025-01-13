@@ -1,4 +1,4 @@
-package com.example.demo.util;
+package com.example.demo.config;
 
 import com.example.demo.interceptor.CustomInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
