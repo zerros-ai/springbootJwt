@@ -12,3 +12,28 @@ ROLE 테이블 만들기
 sercurityConfig에서 .hasRole 과 .hasAuthority의 차이점 
 .hasRole은 ROLE_ 접두사를 붙여 DB에서 검색. 
 .hasAuthority는 그대로 DB에서 검색.
+
+2025-01-13
+1.로그인 요청:
+    클라이언트가 /login 엔드포인트로 ID와 비밀번호를 전송 
+2.Authentication Manager 호출:
+    Spring Security가 AuthenticationManager를 통해 인증 요청을 처리
+    AuthenticationManager는 모든 AuthenticationProvider를 순차적으로 호출.
+3.CustomAuthenticationProvider 처리:
+    authenticate 메서드에서 사용자 Id와 비밀번호를 검증 
+    검증 성공 시 Authentication 객체 반환 
+    실패 시 예외 발생 BadCredentialsException 또는 UsernameNotFoundException 
+4.SecurityContext에 인증 정보 저장:
+    인증 성공 시 반환된 Authentication 객체가 SecurityContext에 저장.
+
+N+1문제란?
+    한 번의 쿼리를 실행 후, 관련 엔티티를 로드하기 위해 추가로 N번의 쿼리가 실행되는 현상 
+    부모-자식 관계에서 부모 리스트를 가져온 후, 각 부모의 자식을 조회하는 쿼리가 N번 실행되는 경우
+해결방법)
+    1.Fetch Join
+        관련된 엔티티를 한 번의 쿼리로 가져온다. 
+    2.Entity Graph 
+        JPA에서 Fetch 전략을 정의하는 방법 
+    3.Batch Size 
+        Hibernate의 batch_size 설정을 사용하면 N+1 문제를 완화할 수 있다. 
+        ex)spring.jpa.properties.hibernate.default_batch_fetch_size=10
