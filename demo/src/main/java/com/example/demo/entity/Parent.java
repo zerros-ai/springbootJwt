@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@NamedEntityGraph(
+        name = "Parent.children",
+        attributeNodes = @NamedAttributeNode("children")
+)
 public class Parent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

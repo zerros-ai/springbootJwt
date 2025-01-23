@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.entity.User;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
@@ -53,6 +54,12 @@ public class UserController {
     @GetMapping("/{id}")
     public User getUserById(@PathVariable String id) {
         return userService.getUserById(id);
+    }
+
+    @GetMapping("/list")
+    public ResponseEntity<Page<User>> getUserList(@RequestParam String role,
+                                                  @RequestParam int page, @RequestParam int size) {
+        return ResponseEntity.ok(userService.getUserByRole(role, page, size));
     }
 }
 

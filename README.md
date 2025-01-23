@@ -37,3 +37,10 @@ N+1문제란?
     3.Batch Size 
         Hibernate의 batch_size 설정을 사용하면 N+1 문제를 완화할 수 있다. 
         ex)spring.jpa.properties.hibernate.default_batch_fetch_size=10
+
+2025-01-23 
+대용량 데이터 처리
+1.pagination
+    데이터를 페이지 단위로 나누어 필요한 만큼만 가져오는 방법
+2.Lazy loading
+    관련 데이터를 즉시 로드하지 않고, 실제로 필요할 때 로드하는 전략
