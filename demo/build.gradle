@@ -25,7 +25,26 @@ dependencies {
     implementation 'io.jsonwebtoken:jjwt-api:0.12.6'
     implementation 'javax.servlet:javax.servlet-api:4.0.1'
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.4'
-    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+
+    // Spring Boot Actuator (애플리케이션 상태 모니터링)
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    // Micrometer Prometheus (Actuator 메트릭을 Prometheus에서 읽을 수 있도록 변환)
+    implementation 'io.micrometer:micrometer-registry-prometheus'
+
+    // Micrometer Tracing (spring cloud sleuth 대체)
+    implementation 'io.micrometer:micrometer-tracing-bridge-brave'
+    implementation 'io.zipkin.reporter2:zipkin-reporter-brave'
+
+    // Zipkin (Micrometer Tracing 데이터를 Zipkin으로 전송)
+    implementation 'io.zipkin.reporter2:zipkin-reporter'
+
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2'
+    implementation 'org.springframework.boot:spring-boot-starter-graphql'
+
+
+    // Lombok (선택 사항)
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'io.projectreactor:reactor-test'

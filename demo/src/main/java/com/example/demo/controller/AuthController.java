@@ -37,11 +37,5 @@ public class AuthController {
 
     }
 
-    @PostMapping("logout")
-    public ResponseEntity logout(@RequestHeader("Authorization") String token) {
-        jwtUtil.invalidateToken(token.replace("Bearer ", ""));
-        return ResponseEntity.ok().body("logout");
-    }
-
 
 }

@@ -16,6 +16,13 @@ public class User extends BaseEntity {
     private String password;
     private String role;
 
+    public User(String id) {
+    }
+
+    public User() {
+
+    }
+
     public String getPassword() {
         return password;
     }

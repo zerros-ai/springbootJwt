@@ -37,6 +37,9 @@ public class SecurityConfig {
                         .requestMatchers("/api/users/add","/api/auth/login").permitAll()
                         .requestMatchers("dashboard").permitAll()
                         .requestMatchers("/api/users/info").hasAuthority("ROLE_USER")
+                        .requestMatchers("/api/slow").permitAll()
+                        .requestMatchers("/graphql", "/v3/api-docs/**", "/swagger-ui/**").permitAll()
+
                         .anyRequest().authenticated()
                 )
                 .anonymous(anonymous->anonymous.disable())

@@ -2,6 +2,8 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.User;
 import com.example.demo.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Tag(name = "User Api",description = "사용자 관련 API")
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
@@ -24,6 +27,7 @@ public class UserController {
         return userService.createUser(user);}
 
     //계정 조회
+    @Operation(summary = "사용자 목록 조회", description = "모든 사용자를 조회하는 API")
     @GetMapping("/info")
     public ResponseEntity<?> getUserInfo(Authentication authentication) {
         String id = authentication.getName();

@@ -2,8 +2,6 @@ package com.example.demo.util;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
 import java.security.Key;
@@ -12,9 +10,6 @@ import java.util.concurrent.TimeUnit;
 
 @Component
 public class JwtUtil {
-
-    @Autowired
-    private RedisTemplate<String,String> redisTemplate;
 
     private static final long EXPIRATION_TIME = 1000 * 3600; // 1시간
 
@@ -34,9 +29,6 @@ public class JwtUtil {
                 .expiration(new Date(System.currentTimeMillis()+ expiration))
                 .signWith(getSignKey())
                 .compact();
-
-        // Redis에 JWT 저장(토큰 만료 시간과 함께)
-        redisTemplate.opsForValue().set(token, id, expiration, TimeUnit.MILLISECONDS);
         return token;
     }
 
@@ -52,9 +44,6 @@ public class JwtUtil {
 
     //유효성검사
     public boolean validateToken(String token){
-        if(!redisTemplate.hasKey(token)){
-            return false;
-        }
         try {
             Jwts.parser()
                     .setSigningKey(getSignKey())
@@ -68,7 +57,5 @@ public class JwtUtil {
         }
     }
 
-    public void invalidateToken(String token){
-        redisTemplate.delete(token);
-    }
+
 }

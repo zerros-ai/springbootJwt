@@ -48,7 +48,7 @@ N+1문제란?
 2025-02-11
 1.Redis는 인메모리 데이터 저장소로, 빠른 속도를 기반으로 다양한 캐싱 작업에 적합 
 JWT 저장, 세션 상태관리, 데이터베이스 쿼리 결과 캐싱과 같은 작업에 활용 
- 
+ Redis는 따로 서버를 구축해야됨
 JWT를 Redis에 저장하는 이유 
     토큰 블랙리스트 
         로그아웃된 사용자의 JWT를 Redis에 저장하여 차단. 
@@ -56,5 +56,46 @@ JWT를 Redis에 저장하는 이유
     단기 만료 관리 
         JWT의 만료 시간을 Redis의 TTL(Time to live)로 설정하여 관리
      
+2025-02-18
+    엔드포인트란? 클라이언트와 서버간 데이터를 주고받는 URL 주소 
+        ex)API URL이라고 보면 된다.
+    Spring Boot Actuator이란?
+    애플리케이션의 상태와 성능을 쉽게 모니터링할 수 있도록 다양한 엔드포인트를 제공하는 라이브러리 
+    Zipkin도 서버다 
 
-
+    Docker란?
+        컨테이너 기술을 이용해 어플을 패키징, 배포, 실행할 수 있는 플랫폼 
+        이미지:실행 가능한 애플리케이션과 그에 필요한 환경을 포함한 템플릿
+        컨테이너:이미지를 기반으로 실행되는 독립적인 환경 
+        도커 허브:공개된 도커 이미지를 저장하고 공유하는 저장소 
+        docker file:이미지를 빌드할때 사용하는 설정 파일 
+        volume:컨테이너의 데이터를 저장하는 방법
+    
+    API 버전관리 
+        기존 API를 유지하면서 새로운 기능 추가 
+        클라이언트가 특정 버전의 API를 사용할 수 있도록 지원 
+        변경 사항이 있을 때, 기존 사용자를 깨지 않도록 보장 
+        1)URL 버전 관리 
+            경로에 버전 추가하기 /api/v1/user
+        2)요청 헤더 기반 버전 관리
+            @GetMapping
+            public String getUsers(@RequestHeader(value = "API-Version", defaultValue = "1") String version) {
+                if ("2".equals(version)) {
+                    return "User list for v2";
+                }
+                return "User list for v1";
+            }
+        3)파라미터 기반 버전 관리 
+            파라미터에 버전을 추가 
+    API 문서화 
+        API 사용법을 쉽게 이해할 수 있음 
+        자동으로 API 명세를 생성할 수 있음 
+        클라이언트와 원활한 협업 가능 
+    GraphQL
+        클라이언트가 필요한 데이터만 요청할 수 있는 API 방식 
+2025-02-19
+    GraphQL 
+        REST API 처럼 개별 API가 아닌 /graphql에서 모든 처리를 함 
+        @Controller 와 @QueryMapping 어노테이션으로만 사용 해야 요청이 동작 
+        Query:조회
+        Mutation:삽입/수정/삭제
